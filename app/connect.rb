@@ -84,26 +84,27 @@ class ConnectFour
   	end
 
   	def display_board
-  		puts " _____________________________"
-  		puts "|                             |"
+  		puts "   \e[31m .=============================.\e[0m"
+  		puts "   \e[31m||                             ||\e[0m"
   		(0..5).to_a.reverse.each do |y|
-  			row_string = "| "
+  			row_string = "   \e[31m|| \e[0m"
   			(0..6).each do |x|
   				player = @board[x][y]
   				row_string.concat("[\e[31m@\e[0m] ") if player == 1
   				row_string.concat("[\e[34m@\e[0m] ") if player == 2
   				row_string.concat("[ ] ") if player == nil
   			end
-  			row_string.concat("|")
+  			row_string.concat("\e[31m||\e[0m")
   			puts row_string
   		end
-  		puts "|-----------------------------|"
-  		puts "| \e[33m[1] [2] [3] [4] [5] [6] [7]\e[0m |"
+  		puts "   \e[31m||-----------------------------||\e[0m"
+  		puts "   \e[31m||\e[0m \e[33m[1] [2] [3] [4] [5] [6] [7]\e[0m \e[31m||\e[0m"
   	end
 
   	def input_prompt
   		puts <<~HEREDOC
-  			Select a row to drop a coin:
+
+  		Select a row to drop a coin:
 
   		HEREDOC
   		col_picker
@@ -209,11 +210,11 @@ class ConnectFour
   	def results
   		display_board
   		if @winner == 1
-  			puts "     \e[31mRed\e[0m wins!"
+  			puts "\n     \e[31mRed\e[0m wins!"
   		elsif @winner == 2
-  			puts "     \e[34mBlue\e[0m wins!"
+  			puts "\n     \e[34mBlue\e[0m wins!"
   		else
-  			puts "You ran out of turns! \e[33mTry again!\e[0m"
+  			puts "\n   You ran out of turns! \e[33mTry again!\e[0m"
   		end
   	end
 end
